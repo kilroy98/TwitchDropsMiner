@@ -1534,7 +1534,7 @@ class _SettingsVars(TypedDict):
 
 
 class SettingsPanel:
-    AUTOSTART_NAME: str = "TwitchDropsMiner"
+    AUTOSTART_NAME: str = "TwitchDropsMinerFirst"
     AUTOSTART_KEY: str = "HKCU/Software/Microsoft/Windows/CurrentVersion/Run"
 
     @cached_property
