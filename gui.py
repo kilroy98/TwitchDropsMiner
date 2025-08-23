@@ -1055,7 +1055,7 @@ class ChannelList:
 
 
 class TrayIcon:
-    TITLE = "Twitch Drops Miner"
+    TITLE = "Twitch Drops Miner Second"
 
     def __init__(self, manager: GUIManager, master: ttk.Widget):
         self._manager = manager
@@ -1534,7 +1534,7 @@ class _SettingsVars(TypedDict):
 
 
 class SettingsPanel:
-    AUTOSTART_NAME: str = "TwitchDropsMiner"
+    AUTOSTART_NAME: str = "TwitchDropsMinerSecond"
     AUTOSTART_KEY: str = "HKCU/Software/Microsoft/Windows/CurrentVersion/Run"
 
     @cached_property
@@ -1799,7 +1799,7 @@ class SettingsPanel:
                     f"""
                     [Desktop Entry]
                     Type=Application
-                    Name=Twitch Drops Miner
+                    Name=Twitch Drops Miner Second
                     Description=Mine timed drops on Twitch
                     Exec=sh -c '{self._get_autostart_path()}'
                     """
