@@ -437,7 +437,9 @@ class DropsCampaign:
 
     def _base_can_earn(self, channel: Channel | None = None) -> bool:
         return (
-            channel is None or not self.allowed_channels or channel in self.allowed_channels
+            self.active  # campaign is active
+            # channel isn't specified, or there's no ACL, or the channel is in the ACL
+            and (channel is None or not self.allowed_channels or channel in self.allowed_channels)
         )
 
     def can_earn(self, channel: Channel | None = None) -> bool:
