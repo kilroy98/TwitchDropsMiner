@@ -1645,7 +1645,7 @@ class SettingsPanel:
             variable=self._vars["dark_mode"],
             command=self.update_dark_mode,
         ).grid(column=1, row=irow, sticky="w")
-         ttk.Label(
+        ttk.Label(
             checkboxes_frame, text=_("gui", "settings", "general", "ignore_linked_status")
         ).grid(column=0, row=(irow := irow + 1), sticky="e")
         ttk.Checkbutton(
