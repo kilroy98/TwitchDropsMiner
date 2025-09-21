@@ -395,7 +395,7 @@ class DropsCampaign:
 
     @property
     def eligible(self) -> bool:
-        return self.linked or self.has_badge_or_emote
+        return self.has_badge_or_emote
 
     @cached_property
     def has_badge_or_emote(self) -> bool:
