@@ -339,11 +339,12 @@ class TimedDrop(BaseDrop):
 
 class DropsCampaign:
     def __init__(self, twitch: Twitch, data: JsonType, claimed_benefits: dict[str, datetime]):
+        self.ignore_linked_status: bool = twitch.settings.ignore_linked_status
         self._twitch: Twitch = twitch
         self.id: str = data["id"]
         self.name: str = data["name"]
         self.game: Game = Game(data["game"])
-        self.linked: bool = True
+        self.linked: bool = data["self"]["isAccountConnected"]
         self.link_url: str = data["accountLinkURL"]
         # campaign's image actually comes from the game object
         # we use regex to get rid of the dimensions part (ex. ".../game_id-285x380.jpg")

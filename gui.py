@@ -1550,6 +1550,7 @@ class _SettingsVars(TypedDict):
     language: StringVar
     priority_mode: StringVar
     tray_notifications: IntVar
+    ignore_linked_status: IntVar
 
 
 class SettingsPanel:
@@ -1581,6 +1582,7 @@ class SettingsPanel:
             "proxy": StringVar(master, str(self._settings.proxy)),
             "tray": IntVar(master, self._settings.autostart_tray),
             "dark_mode": IntVar(master, int(self._settings.dark_mode)),
+            "ignore_linked_status": IntVar(master, int(self._settings.ignore_linked_status)),
             "priority_mode": StringVar(master, self.PRIORITY_MODES[priority_mode]),
             "tray_notifications": IntVar(master, self._settings.tray_notifications),
         }
@@ -1643,6 +1645,14 @@ class SettingsPanel:
             checkboxes_frame,
             variable=self._vars["dark_mode"],
             command=self.update_dark_mode,
+        ).grid(column=1, row=irow, sticky="w")
+         ttk.Label(
+            checkboxes_frame, text=_("gui", "settings", "general", "ignore_linked_status")
+        ).grid(column=0, row=(irow := irow + 1), sticky="e")
+        ttk.Checkbutton(
+            checkboxes_frame,
+            variable=self._vars["ignore_linked_status"],
+            command=self.update_ignore_linked_status,
         ).grid(column=1, row=irow, sticky="w")
         ttk.Label(
             checkboxes_frame, text=_("gui", "settings", "general", "priority_mode")
@@ -1760,6 +1770,10 @@ class SettingsPanel:
         self._settings.dark_mode = bool(self._vars["dark_mode"].get())
         self._settings.alter()
         self._manager.apply_theme(self._settings.dark_mode)
+
+    def update_ignore_linked_status(self) -> None:
+        self._settings.ignore_linked_status = bool(self._vars["ignore_linked_status"].get())
+        self._settings.alter()
 
     def update_notifications(self) -> None:
         self._settings.tray_notifications = bool(self._vars["tray_notifications"].get())
