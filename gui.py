@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import os
 import re
 import sys
@@ -1769,7 +1770,7 @@ class SettingsPanel:
         self._settings.dark_mode = bool(self._vars["dark_mode"].get())
         self._settings.alter()
         self._manager.apply_theme(self._settings.dark_mode)
-
+    
     def update_ignore_linked_status(self) -> None:
         self._settings.ignore_linked_status = bool(self._vars["ignore_linked_status"].get())
         self._settings.alter()
