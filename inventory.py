@@ -395,7 +395,7 @@ class DropsCampaign:
 
     @property
     def eligible(self) -> bool:
-        return self.has_badge_or_emote
+        return self.linked or self.has_badge_or_emote
 
     @cached_property
     def has_badge_or_emote(self) -> bool:
@@ -449,8 +449,7 @@ class DropsCampaign:
         self, channel: Channel | None = None, ignore_channel_status: bool = False
     ) -> bool:
         return (
-            self.eligible  # account is eligible
-            and self.active  # campaign is active (and valid)
+            self.active  # campaign is active (and valid)
             and (
                 channel is None or (  # channel isn't specified,
                     # or there's no ACL, or the channel is in the ACL
